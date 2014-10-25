@@ -7,7 +7,7 @@ library(reshape2)
 print("Reading FEATURE file...")
 flush.console()
 feature <- read.table("./features.txt", header = FALSE, col.names=c("id","name"))
-reqCol <- grepl("mean|std", feature$name) 
+reqCol <- grepl("mean\\(\\)|std\\(\\)", feature$name) 
 
 # Read 'activity_labels.txt'
 # File captures the the class labels with their activity name.
