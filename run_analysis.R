@@ -33,10 +33,10 @@ feature$name <- gsub("\\-std\\(\\)", ".Std", feature$name)
 print("Reading TEST files...")
 flush.console()
 valTest <- read.table("./test/X_test.txt", header = FALSE, col.names=feature[,2]) ## REQ 4.Appropriately labels the data set with descriptive variable names.
+valTest <- valTest[,reqCol] ## REQ 2: Extracts only the measurements on the mean and standard deviation for each measurement.
 subTest <- read.table("./test/subject_test.txt", header = FALSE, col.names=c("Subject"))
 idTest <- read.table("./test/y_test.txt", header = FALSE, col.names=c("Activity.ID"))
 dataTest <- cbind(subTest, idTest, valTest) #Bind to a single data set, with Subject, Activity and Features
-dataTest <- dataTest[,reqCol] ## REQ 2: Extracts only the measurements on the mean and standard deviation for each measurement. 
 
 # Read TRAIN file
 # - 'train/X_train.txt': Training set.
@@ -46,10 +46,10 @@ dataTest <- dataTest[,reqCol] ## REQ 2: Extracts only the measurements on the me
 print("Reading TRAIN files...")
 flush.console()
 valTrain <- read.table("./train/X_train.txt", header = FALSE, col.names=feature[,2]) ## REQ 4: Appropriately labels the data set with descriptive variable names. 
+valTrain <- valTrain[,reqCol] ## REQ 2: Extracts only the measurements on the mean and standard deviation for each measurement.
 subTrain <- read.table("./train/subject_train.txt", header = FALSE, col.names=c("Subject"))
 idTrain <- read.table("./train/y_train.txt", header = FALSE, col.names=c("Activity.ID"))
 dataTrain <- cbind(subTrain, idTrain, valTrain)
-dataTrain <- dataTrain[,reqCol] ## REQ 2: Extracts only the measurements on the mean and standard deviation for each measurement.
 
 # Merge TEST and TRAIN data
 ## REQ 1: Merges the training and the test sets to create one data set.
